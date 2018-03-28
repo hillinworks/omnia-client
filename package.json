@@ -70,6 +70,7 @@
     "angular-idle-preload": "~2.0.4",
     "core-js": "2.5.3",
     "ip": "~1.1.5",
+    "ng2-semantic-ui": "^0.9.7",
     "rxjs": "~5.5.7",
     "zone.js": "~0.8.20"
   },

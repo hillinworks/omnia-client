@@ -1,14 +1,14 @@
 export const views: Object[] = [
   {
-    name: 'Dashboard',
-    link: ['']
+    name: "Dashboard",
+    link: [""]
   },
   {
-    name: 'Lazy',
-    link: ['lazy']
+    name: "Lazy",
+    link: ["lazy"]
   },
   {
-    name: 'Bad Link',
-    link: ['wronglink']
+    name: "Bad Link",
+    link: ["wronglink"]
   }
 ];

@@ -1,14 +1,14 @@
-import { browser } from 'protractor';
+import { browser } from "protractor";
 
-describe('App', () => {
+describe("App", () => {
 
   beforeEach(() => {
-    browser.get('/');
+    browser.get("/");
   });
 
-  it('should have a title', () => {
+  it("should have a title", () => {
     let subject = browser.getTitle();
-    let result  = 'Angular 2 App';
+    let result  = "Angular 2 App";
     expect(subject).toEqual(result);
   });
 

@@ -32,3 +32,5 @@ ts-node
 /**/*.css.ts
 /**/*.css.shim.ts
 dll/
+
+/yarn-error.log

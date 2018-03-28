@@ -1,11 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from "@angular/core";
 
-import { views } from './app-nav-views';
+import { views } from "./app-nav-views";
 
 @Component({
-  selector: 'my-app',
-  styleUrls: ['./app.component.scss'],
-  templateUrl: './app.component.html',
+  selector: "my-app",
+  styleUrls: ["./app.component.scss"],
+  templateUrl: "./app.component.html",
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
@@ -14,14 +14,14 @@ export class AppComponent {
   constructor() { }
 
   activateEvent(event) {
-    if (ENV === 'development') {
-      console.log('Activate Event:', event);
+    if (ENV === "development") {
+      console.log("Activate Event:", event);
     }
   }
 
   deactivateEvent(event) {
-    if (ENV === 'development') {
-      console.log('Deactivate Event', event);
+    if (ENV === "development") {
+      console.log("Deactivate Event", event);
     }
   }
 }

@@ -8,7 +8,7 @@ beforeEach(() => {
           const actualText = actual.textContent;
           return {
             pass: actualText == expectedText,
-            get message() { return 'Expected ' + actualText + ' to equal ' + expectedText; }
+            get message() { return "Expected " + actualText + " to equal " + expectedText; }
           };
         }
       };
@@ -20,7 +20,7 @@ beforeEach(() => {
           const actualText = actual.textContent;
           return {
             pass: actualText.indexOf(expectedText) > -1,
-            get message() { return 'Expected ' + actualText + ' to contain ' + expectedText; }
+            get message() { return "Expected " + actualText + " to contain " + expectedText; }
           };
         }
       };
@@ -33,7 +33,7 @@ beforeEach(() => {
           return {
             pass: actual.classList.contains(className) === !isNot,
             get message() {
-              return `Expected ${actual.outerHTML} ${isNot ? 'not ' : ''}to contain the CSS class "${className}"`;
+              return `Expected ${actual.outerHTML} ${isNot ? "not " : ""}to contain the CSS class "${className}"`;
             }
           };
         };
@@ -42,11 +42,11 @@ beforeEach(() => {
     toBeAnInstanceOf: function () {
       return {
         compare: function (actual: any, expectedClass: any) {
-          const pass = typeof actual === 'object' && actual instanceof expectedClass;
+          const pass = typeof actual === "object" && actual instanceof expectedClass;
           return {
             pass: pass,
             get message() {
-              return 'Expected ' + actual + ' to be an instance of ' + expectedClass;
+              return "Expected " + actual + " to be an instance of " + expectedClass;
             }
           };
         }

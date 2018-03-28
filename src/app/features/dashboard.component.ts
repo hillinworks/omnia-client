@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component } from "@angular/core";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
-  selector: 'my-dashboard',
-  templateUrl: './dashboard.component.html'
+  selector: "my-dashboard",
+  templateUrl: "./dashboard.component.html"
 })
 
 export class DashboardComponent {
@@ -12,7 +12,7 @@ export class DashboardComponent {
     fb: FormBuilder
   ) {
     this.form = fb.group({
-      name: 'Angular User'
+      name: "Angular User"
     });
   }
 }

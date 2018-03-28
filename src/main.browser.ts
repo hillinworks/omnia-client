@@ -1,12 +1,12 @@
-import './polyfills.browser';
-import './rxjs.imports';
+import "./polyfills.browser";
+import "./rxjs.imports";
 declare var ENV: string;
 
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
+import { enableProdMode } from "@angular/core";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { AppModule } from "./app/app.module";
 
-if ('production' === ENV) {
+if ("production" === ENV) {
   enableProdMode();
 }
 
@@ -17,7 +17,7 @@ export function main() {
 }
 
 export function bootstrapDomReady() {
-  document.addEventListener('DOMContentLoaded', main);
+  document.addEventListener("DOMContentLoaded", main);
 }
 
 bootstrapDomReady();

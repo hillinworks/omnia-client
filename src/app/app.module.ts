@@ -6,20 +6,21 @@
  * there is something that is specific to the environment.
  */
 
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, PreloadAllModules } from '@angular/router';
-import { IdlePreload, IdlePreloadModule } from 'angular-idle-preload';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
+import { RouterModule, PreloadAllModules } from "@angular/router";
+import { IdlePreload, IdlePreloadModule } from "angular-idle-preload";
+import { SuiModule } from "ng2-semantic-ui";
 
-import { APP_DECLARATIONS } from './app.declarations';
-import { APP_ENTRY_COMPONENTS } from './app.entry-components';
-import { APP_IMPORTS } from './app.imports';
-import { APP_PROVIDERS } from './app.providers';
+import { APP_DECLARATIONS } from "./app.declarations";
+import { APP_ENTRY_COMPONENTS } from "./app.entry-components";
+import { APP_IMPORTS } from "./app.imports";
+import { APP_PROVIDERS } from "./app.providers";
 
-import { routes } from './app.routing';
+import { routes } from "./app.routing";
 
-import { AppComponent } from './app.component';
+import { AppComponent } from "./app.component";
 
 @NgModule({
   declarations: [
@@ -33,10 +34,11 @@ import { AppComponent } from './app.component';
     APP_IMPORTS,
     IdlePreloadModule.forRoot(), // forRoot ensures the providers are only created once
     RouterModule.forRoot(routes, { useHash: false, preloadingStrategy: IdlePreload }),
+    SuiModule,
   ],
   bootstrap: [AppComponent],
   exports: [AppComponent],
   providers: [APP_PROVIDERS]
 })
 
-export class AppModule {}
+export class AppModule { }
