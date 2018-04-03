@@ -1,0 +1,13 @@
+<div class="header">{{ modal.context.title }}</div>
+<div class="content">
+  <div class="ui text loader" [hidden]="modal.context.isDone">
+    {{ modal.context.message }}
+  </div>
+
+  <div [class]="modal.context.messageClass" [hidden]="!modal.context.isDone">
+    <p>{{ modal.context.message }}</p>
+  </div>
+</div>
+<div class="actions" [hidden]="!modal.context.isDone">
+  <button class="ui green button" (click)="modal.approve(undefined)" autofocus>Close</button>
+</div>

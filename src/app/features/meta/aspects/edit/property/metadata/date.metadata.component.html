@@ -1,0 +1,23 @@
+<form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()">
+  <div class="fields">
+    <div class="field">
+      <label>Minimum</label>
+      <input type="date" formControlName="minValue">
+    </div>
+    <div class="field">
+      <label>Maximum</label>
+      <input type="date" formControlName="maxValue">
+    </div>
+    <div class="field">
+      <label>Default Value</label>
+      <input type="date" formControlName="defaultValue">
+    </div>
+    <div class="field">
+      <label>Mode</label>
+      <sui-select class="selection" formControlName="mode" [options]="dateModes" [isSearchable]="searchable">
+        <sui-select-option *ngFor="let dateMode of dateModes" [value]="dateMode">
+        </sui-select-option>
+      </sui-select>
+    </div>
+  </div>
+</form>

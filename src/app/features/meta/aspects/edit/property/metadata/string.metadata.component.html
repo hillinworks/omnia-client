@@ -1,0 +1,23 @@
+<form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()">
+  <div class="fields">
+    <div class="field">
+      <label>Minimum Length</label>
+      <input type="number" formControlName="minLength">
+    </div>
+    <div class="field">
+      <label>Maximum Length</label>
+      <input type="number" formControlName="maxLength">
+    </div>
+    <div class="field">
+      <label>Default Value</label>
+      <input type="text" formControlName="defaultValue">
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" formControlName="canBeReference">
+      <label>Can be reference</label>
+    </div>
+  </div>
+</form>

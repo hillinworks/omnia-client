@@ -1,0 +1,44 @@
+<form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()">
+  <div class="fields">
+    <div class="field">
+      <label>Enumeration</label>
+      <div class="ui action input">
+        <ng-template let-option #optionTemplate>
+          <i class="child icon"></i>{{ option.name }}
+        </ng-template>
+        <sui-select class="selection" formControlName="enumName" [options]="enumerations" labelField="name" [optionTemplate]="optionTemplate"
+          [isSearchable]="true" #templated>
+          <sui-select-option *ngFor="let o of templated.filteredOptions" [value]="o"></sui-select-option>
+        </sui-select>
+
+        <div class="ui small basic icon buttons">
+          <button type="button" class="ui button" (click)="promptEditEnum()" [hidden]="!form.value.enumName">
+            <i class="edit outline icon"></i>
+          </button>
+          <button type="button" class="ui button" (click)="promptCreateEnum()">
+            <i class="plus icon"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" formControlName="allowCustomValue">
+      <label>Allow custom value</label>
+    </div>
+  </div>
+</form>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="header">Create/Edit Enum</div>
+  <div class="content">
+    <p></p>
+  </div>
+  <div class="actions">
+    <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+    <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+  </div>
+</ng-template>

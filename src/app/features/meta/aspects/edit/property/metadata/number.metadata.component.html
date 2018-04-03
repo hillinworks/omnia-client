@@ -1,0 +1,20 @@
+<form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()">
+  <div class="fields">
+    <div class="field">
+      <label>Minimum</label>
+      <input type="number" formControlName="minValue">
+    </div>
+    <div class="field">
+      <label>Maximum</label>
+      <input type="number" formControlName="maxValue">
+    </div>
+    <div class="field">
+      <label>Precision</label>
+      <input type="number" formControlName="precision">
+    </div>
+    <div class="field">
+      <label>Default Value</label>
+      <input type="number" formControlName="defaultValue">
+    </div>
+  </div>
+</form>

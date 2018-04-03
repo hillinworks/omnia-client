@@ -1,0 +1,30 @@
+<header>
+  <h1>
+    Create an Aspect
+  </h1>
+</header>
+<form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <label>Namespace</label>
+    <input type="text" formControlName="namespace" placeholder="namespace">
+  </div>
+  <div class="field">
+    <label>Name</label>
+    <input type="text" formControlName="name" placeholder="name">
+  </div>
+  <div class="field">
+    <label>Key</label>
+    <div class="two fields">
+      <div class="fourteen wide field">
+        <input type="text" formControlName="key" placeholder="key">
+      </div>
+      <div class="two wide field">
+        <div class="ui slider checkbox">
+          <input type="checkbox" formControlName="autoGenerateKey">
+          <label>Auto</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="ui button" type="submit">Submit</button>
+</form>

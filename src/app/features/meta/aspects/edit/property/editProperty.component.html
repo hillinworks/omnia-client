@@ -1,0 +1,54 @@
+<form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()">
+
+  <div class="field">
+    <label>Name</label>
+    <input type="text" formControlName="name" placeholder="name">
+  </div>
+
+  <div class="field">
+    <label>Key</label>
+    <div class="two fields">
+      <div class="fourteen wide field">
+        <input type="text" formControlName="key" placeholder="key">
+      </div>
+      <div class="two wide field">
+        <div class="ui slider checkbox">
+          <input type="checkbox" formControlName="autoGenerateKey">
+          <label>Auto</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <textarea rows="2" formControlName="description" placeholder="Type description here"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Type</label>
+    <sui-select class="selection" formControlName="type" [options]="dataTypes" [isSearchable]="searchable">
+      <sui-select-option *ngFor="let dataType of dataTypes" [value]="dataType">
+      </sui-select-option>
+    </sui-select>
+  </div>
+
+  <div class="ui segment" [hidden]="!metadataComponentType">
+    <ndc-dynamic [ndcDynamicComponent]="metadataComponentType" [ndcDynamicInputs]="{metadata: currentMetadata}"></ndc-dynamic>
+  </div>
+
+  <div class="field">
+    <label>Comparability</label>
+    <sui-select class="selection" formControlName="comparability" [options]="comparabilities" [isSearchable]="searchable">
+      <sui-select-option *ngFor="let comparability of comparabilities" [value]="comparability">
+      </sui-select-option>
+    </sui-select>
+  </div>
+
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" formControlName="isObsolete">
+      <label>This property is obsolete</label>
+    </div>
+  </div>
+
+</form>

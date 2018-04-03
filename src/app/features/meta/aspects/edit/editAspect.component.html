@@ -1,0 +1,84 @@
+<header>
+  <h1 class="ui header">
+    Edit Aspect
+  </h1>
+</header>
+
+<div class="ui icon message" [hidden]="!isLoadingAspect">
+  <i class="notched circle loading icon"></i>
+  <div class="content">
+    <div class="header">
+      Loading
+    </div>
+    <p>Loading aspect
+      <b>{{key}}</b>...
+    </p>
+  </div>
+</div>
+
+<div class="ui negative message" [hidden]="!loadErrorMessage">
+  <div class="header">
+    Failed to load aspect
+    <b>{{key}}</b>
+  </div>
+  <p>{{loadErrorMessage}}</p>
+</div>
+
+<div [hidden]="isLoadingAspect || loadErrorMessage">
+  <form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <input type="text" formControlName="name" placeholder="name">
+    </div>
+    <div class="field">
+      <textarea rows="2" formControlName="description" placeholder="Type description here"></textarea>
+    </div>
+
+    <button class="ui right floated labeled icon button" type="button" (click)="promptNewProperty()">
+      <i class="add icon"></i>
+      New property
+    </button>
+
+    <h3 class="ui left floated header">Properties</h3>
+
+    <table class="ui selectable celled unstackable table">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th class="collapsing">Obsolete</th>
+          <th>Name</th>
+          <th class="collapsing">Type</th>
+          <th class="collapsing">Comparability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let property of aspect?.properties" (click)="editProperty(property)" class="{{property.isObsolete ? 'warning' : ''}}">
+          <td>
+            <i class="sticky note outline icon" [hidden]="!property.isNew"></i> {{viewUtils.localKey(property.key)}}</td>
+          <td>{{property.isObsolete ? "OBSOLETE" : ""}}</td>
+          <td>{{property.name}}</td>
+          <td>{{property.type}}</td>
+          <td>{{property.comparability}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" formControlName="isObsolete">
+        <label>This aspect is obsolete</label>
+      </div>
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+  </form>
+</div>
+
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="header">{{context.title}}</div>
+  <div class="content">
+    <omnia-edit-property [target]="context.target" #propertyEditor></omnia-edit-property>
+  </div>
+  <div class="actions">
+    <button class="ui red button" (click)="modal.approve('delete')" [hidden]="!context.showDelete">Delete</button>
+    <button class="ui green button" (click)="modal.approve('save')" autofocus>Done</button>
+  </div>
+</ng-template>

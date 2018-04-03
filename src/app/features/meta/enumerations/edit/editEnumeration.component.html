@@ -1,0 +1,87 @@
+<header>
+  <h1 class="ui header">
+    Edit Enumeration
+  </h1>
+</header>
+
+<div class="ui icon message" [hidden]="!isLoadingEnumeration">
+  <i class="notched circle loading icon"></i>
+  <div class="content">
+    <div class="header">
+      Loading
+    </div>
+    <p>Loading enumeration
+      <b>{{key}}</b>...
+    </p>
+  </div>
+</div>
+
+<div class="ui negative message" [hidden]="!loadErrorMessage">
+  <div class="header">
+    Failed to load enumeration
+    <b>{{key}}</b>
+  </div>
+  <p>{{loadErrorMessage}}</p>
+</div>
+
+<div [hidden]="isLoadingEnumeration || loadErrorMessage">
+  <form [formGroup]="form" class="ui form" (ngSubmit)="onSubmit()">
+    <div class="field">
+      <input type="text" formControlName="name" placeholder="name">
+    </div>
+    <div class="field">
+      <textarea rows="2" formControlName="description" placeholder="Type description here"></textarea>
+    </div>
+
+    <button class="ui right floated labeled icon button" type="button" (click)="addNewValue()">
+      <i class="add icon"></i>
+      Add Value
+    </button>
+
+    <h3 class="ui left floated header">Values</h3>
+
+    <table class="ui single line unstackable table">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Value</th>
+          <th>Reference</th>
+          <th class="collapsing"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let value of enumeration?.values">
+          <td>
+            <div class="ui input" *ngIf="value.isNew">
+              <input type="text" placeholder="Key" [value]="value.key">
+            </div>
+            <span *ngIf="!value.isNew">
+              {{value.key}}
+            </span>
+          </td>
+          <td>
+            <div class="ui input">
+              <input type="text" placeholder="Key" [value]="value.value">
+            </div>
+          </td>
+          <td>
+            <omnia-reference-select [entryKey]="value.reference"></omnia-reference-select>
+          </td>
+          <td>
+            <button type="button" class="ui icon button">
+              <i class="trash alternate icon"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" formControlName="isObsolete">
+        <label>This enumeration is obsolete</label>
+      </div>
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+  </form>
+</div>

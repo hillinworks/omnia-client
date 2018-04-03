@@ -185,7 +185,7 @@ module.exports = {
     new DefinePlugin({
       AOT: false,
       ENV: JSON.stringify('test'),
-      PORT: 3000,
+      PORT: 3003,
       HOST: JSON.stringify('localhost')
     }),
     new NamedModulesPlugin(),
