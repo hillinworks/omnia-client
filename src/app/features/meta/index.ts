@@ -6,7 +6,7 @@ import { DynamicModule } from "ng-dynamic-component";
 
 import { MetaComponent } from "./meta.component";
 import { CreateAspectComponent } from "./aspects/create/createAspect.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { EditAspectComponent } from "./aspects/edit/editAspect.component";
 import { SuiModule } from "ng2-semantic-ui";
 import { EditPropertyComponent } from "./aspects/edit/property/editProperty.component";
@@ -29,6 +29,7 @@ import { ReferenceSelectComponent } from "../common/edit/referenceSelect/referen
     SuiModule,
     MessagesModule,
     ReferenceSelectModule,
+    FormsModule,
     DynamicModule.withComponents(exportMetadataComponents),
   ],
   declarations: [

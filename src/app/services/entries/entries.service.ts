@@ -31,8 +31,8 @@ export class EntriesService {
     return this.http.put<IEntry>(url, entry);
   }
 
-  public filterEntries(keyword: string): Observable<IEntry[]> {
-    const url = `${API_BASE_URL}/omnia/entry/filter/${keyword}`;
+  public filterEntries(keyword: string, maxCount: number): Observable<IEntry[]> {
+    const url = `${API_BASE_URL}/omnia/entry/filter/${keyword}?max=${maxCount}`;
     return this.http.get<IEntry[]>(url);
   }
 

@@ -1,4 +1,9 @@
-<sui-select class="selection" [(ngModel)]="selectedEntry" [optionsLookup]="entryLookup" labelField="name" valueField="key"
-  [isSearchable]="true" #searchSelect>
-  <sui-select-option *ngFor="let entry of searchSelect.filteredOptions" [value]="entry"></sui-select-option>
-</sui-select>
+<div class="ui action input">
+  <sui-select class="selection" [(ngModel)]="entryKey" [optionsLookup]="entryLookup" labelField="name" valueField="key" [isSearchable]="true"
+    #searchSelect>
+    <sui-select-option *ngFor="let entry of searchSelect.filteredOptions" [value]="entry"></sui-select-option>
+  </sui-select>
+  <button type="button" class="ui icon button" (click)="clearSelection()" [hidden]="!entryKey">
+    <i class="trash icon"></i>
+  </button>
+</div>

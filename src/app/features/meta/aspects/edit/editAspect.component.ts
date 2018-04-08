@@ -15,6 +15,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { CommnunicationDialog } from "../../../common/messages/communication.dialog";
 import { CommunicationDialogContext } from "../../../common/messages/communication.dialog.context";
 import { extractLocalKey } from "../../../../core/data/utilities/CompositeKey";
+import { INewValue } from "../../utilities/INewValue";
 
 interface IPropertyEditContext {
   title: string;
@@ -22,9 +23,7 @@ interface IPropertyEditContext {
   showDelete: boolean;
 }
 
-interface INewProperty extends IProperty {
-  isNew?: boolean;
-}
+interface INewProperty extends IProperty, INewValue { }
 
 @Component({
   selector: "omnia-edit-aspect",
@@ -98,7 +97,7 @@ export class EditAspectComponent implements OnInit {
       type: DataTypes.String,
       metadata: undefined,
       comparability: Comparability.NotComparable,
-      aspectKey: this._aspect.key,
+      aspectKey: this.aspect.key,
       aspect: undefined,
       isNew: true
     };
@@ -111,7 +110,7 @@ export class EditAspectComponent implements OnInit {
     this.showPropertyEditDialog(target, "New Property", false)
       .onApprove(result => {
         this.propertyEditor.onSubmit();
-        this._aspect.properties.push(property);
+        this.aspect.properties.push(property);
       })
       .onDeny(result => { });
   }
@@ -128,7 +127,7 @@ export class EditAspectComponent implements OnInit {
     this.showPropertyEditDialog(target, `Edit ${property.name}`, true)
       .onApprove(result => {
         if (result === "delete") {
-          this._aspect.properties.splice(this._aspect.properties.indexOf(property), 1);
+          this.aspect.properties.splice(this.aspect.properties.indexOf(property), 1);
         } else {
           this.propertyEditor.onSubmit();
         }
@@ -140,17 +139,19 @@ export class EditAspectComponent implements OnInit {
 
     const context = new CommunicationDialogContext(
       "Save Aspect",
-      `Saving aspect <b>${this._aspect.name}</b>...`);
+      `Saving aspect <b>${this.aspect.name}</b>...`);
 
     const modal = this.modalService.open(new CommnunicationDialog(context));
 
-    this.aspectService.updateAspect(this._aspect.key, this._aspect)
+    const submitData = Object.assign({}, this.aspect);
+
+    INewValue.removeIsNew(submitData.properties);
+
+    this.aspectService.updateAspect(this.aspect.key, submitData)
       .subscribe(
         value => {
           this.aspect = value;
-          for (const property of this.aspect.properties) {
-            (property as INewProperty).isNew = undefined;
-          }
+          INewValue.removeIsNew(this.aspect.properties);
           context.onSuccessful("Aspect saved.");
         },
         (error: HttpErrorResponse) => {

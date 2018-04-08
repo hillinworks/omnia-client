@@ -53,7 +53,7 @@
         <tr *ngFor="let value of enumeration?.values">
           <td>
             <div class="ui input" *ngIf="value.isNew">
-              <input type="text" placeholder="Key" [value]="value.key">
+              <input type="text" placeholder="Key" [(ngModel)]="value.key" [ngModelOptions]="{standalone: true}">
             </div>
             <span *ngIf="!value.isNew">
               {{value.key}}
@@ -61,14 +61,14 @@
           </td>
           <td>
             <div class="ui input">
-              <input type="text" placeholder="Key" [value]="value.value">
+              <input type="text" placeholder="Key" [(ngModel)]="value.value" [ngModelOptions]="{standalone: true}">
             </div>
           </td>
           <td>
-            <omnia-reference-select [entryKey]="value.reference"></omnia-reference-select>
+            <omnia-reference-select [(entryKey)]="value.reference"></omnia-reference-select>
           </td>
           <td>
-            <button type="button" class="ui icon button">
+            <button type="button" class="ui icon button" (click)="removeValue(value)">
               <i class="trash alternate icon"></i>
             </button>
           </td>
